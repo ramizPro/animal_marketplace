@@ -1,5 +1,4 @@
 import Link from "next/link";
-import "../globals.css";
 
 export default function Home() {
   return (
@@ -27,7 +26,7 @@ export default function Home() {
       <div className="card_style">
         <button className="login_button">Prijava</button>
 
-        <Link href="/signUp/page.tsx">
+        <Link href="/signUp">
           <button className="signup_button">Registracija</button>
         </Link>
       </div>

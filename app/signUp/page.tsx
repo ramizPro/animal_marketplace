@@ -1,5 +1,3 @@
-import "./globals.css";
-
 export default function Home() {
   return (
     <main
@@ -22,6 +20,9 @@ export default function Home() {
           AgroTrg - Kupujte in prodajajte živino na spletu
         </h1>
       </header>
+      <div>
+        
+      </div>
        </main>
   );
 }
