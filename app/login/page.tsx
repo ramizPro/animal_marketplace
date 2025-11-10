@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function Home() {
   return (
     <main
@@ -22,15 +20,11 @@ export default function Home() {
           AgroTrg - Kupujte in prodajajte živino na spletu
         </h1>
       </header>
-
-      <div className="card_style">
-        <Link href="/login">
-          <button className="login_button">Prijava</button>
-        </Link>
-        <Link href="/signUp">
-          <button className="signup_button">Registracija</button>
-        </Link>
+      <div>
+        username, geslo, gumb za prijavo
       </div>
-    </main>
+       </main>
   );
 }
+
+  

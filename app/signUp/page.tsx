@@ -21,7 +21,7 @@ export default function Home() {
         </h1>
       </header>
       <div>
-        
+        Registracija ime, priimek, email, geslo, potrdi geslo, gumb za registracijo
       </div>
        </main>
   );
