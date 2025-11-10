@@ -1,5 +1,4 @@
-import Link from "next/link";
-import "../globals.css";
+import "./globals.css";
 
 export default function Home() {
   return (
@@ -23,14 +22,8 @@ export default function Home() {
           AgroTrg - Kupujte in prodajajte živino na spletu
         </h1>
       </header>
-
-      <div className="card_style">
-        <button className="login_button">Prijava</button>
-
-        <Link href="/signUp/page.tsx">
-          <button className="signup_button">Registracija</button>
-        </Link>
-      </div>
-    </main>
+       </main>
   );
 }
+
+  
