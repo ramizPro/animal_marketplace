@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Home() {
   return (
     <main
@@ -20,8 +21,24 @@ export default function Home() {
           AgroTrg - Kupujte in prodajajte živino na spletu
         </h1>
       </header>
-      <div>
-        Registracija ime, priimek, email, geslo, potrdi geslo, gumb za registracijo
+      <div className="card_style">
+        <form>
+          Uporabniško ime:
+          <div className="reg_username">
+            <input type="text" id="username" name="username" required />
+          </div>
+          E-pošta:
+          <div className="reg_mail">
+            <input type="text" id="mail" name="mail" required />
+          </div>
+          Geslo:
+          <div className="reg_password">
+            <input type="password" id="password" name="password" required />
+          </div>
+          <Link href="/mainPage">
+            <button className="signup_button" type="submit">Registracija</button>
+          </Link>
+        </form>
       </div>
        </main>
   );

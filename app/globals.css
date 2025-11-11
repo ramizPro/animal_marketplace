@@ -24,6 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 /* main page css */
 
 .header_style {
@@ -70,3 +71,31 @@ body {
   margin-top: 10px;
 }
 
+/*registracija css*/
+.reg_username {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 14px;
+  border: 3px solid black;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.reg_mail {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 14px;
+  border: 3px solid black;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.reg_password {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 14px;
+  border: 3px solid black;
+  border-radius: 8px;
+  font-size: 15px;
+}
