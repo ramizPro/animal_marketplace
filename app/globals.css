@@ -53,35 +53,30 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 2rem;
   border-radius: 10px;
-  max-width: 90%;
+  max-width: 100%;
+  max-height: auto;
 }
-
-.ads_style {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 5px;
-  border-radius: 10px;
-  width: 80%;
-}
-.login_button,
 .signup_button {
   width: 100%;
   padding: 5px;
   color: white;
   border-radius: 10px;
   font-size: 20px;
-  border: none;
   cursor: pointer;
-}
-
-.login_button {
-  background-color: navy;
-}
-
-.signup_button {
   background-color: #28a745;
   margin-top: 10px;
 }
 
+.login_button {
+  background-color: navy;
+  width: 99%;
+  padding: 5px;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
 /*registracija css*/
 .reg_username {
   display: block;
@@ -109,4 +104,13 @@ body {
   border: 3px solid black;
   border-radius: 8px;
   font-size: 15px;
+}
+.ads_style_welcome_page{
+  background-color: rgba(255, 255, 255, 0.8);
+  max-width: 80%;
+  max-height: auto;
+  margin: auto;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 10px;
 }

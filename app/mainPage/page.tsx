@@ -25,7 +25,7 @@ export default function Home() {
         <h1 className="header_title">AgroTrg - Kupujte in prodajajte živino na spletu</h1>
 
         <Link
-          href="/objavi-oglas"
+          href="/objavi_oglas"
           className="mt-4 md:mt-0 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"
         >
           + Objavi oglas
@@ -79,7 +79,7 @@ export default function Home() {
         <section className="flex-1">
           <h2 className="text-2xl font-bold mb-4">Vsi oglasi</h2>
           <div className="ads_style">
-            tuki bojo oglasi na podobn način ko avtonet :D
+            tuki bojo oglasi na podobn način ko avtonet
           </div>
         </section>
       </div>
