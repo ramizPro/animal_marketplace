@@ -5,20 +5,8 @@ export default defineType({
   title: "User",
   type: "document",
   fields: [
-    {
-      name: "username",
-      title: "Username",
-      type: "string",
-    },
-    {
-      name: "email",
-      title: "Email",
-      type: "string",
-    },
-    {
-      name: "passwordHash",
-      title: "Password Hash",
-      type: "string",
-    },
+    { name: "username", title: "Username", type: "string" },
+    { name: "email", title: "Email", type: "string" },
+    { name: "passwordHash", title: "Password Hash", type: "string" },
   ],
 });
