@@ -4,4 +4,4 @@ export const dataset = 'production'
 
 export const projectId = '9zday4uw'
 
-export const token = 'skSJNXgH4f6sdBXspKT9mzS9LFXDhObWFG0xGYAeZDUuUyOwaQXMYYJVo4PKaqRhkBy5RLCptG0yva9W9qn7IzxytgFU2hwh76vrb0jk3Zjb9v0KJvGeAeYMvAyJzMfwjaqycCRsSU7CoFDuunYeOmUHgVOjRbCLAHMBbC1vX6r9XmigPw7n'
+export const token = 'sk9jjIiytimZHY4Bp0IyfMDqNEvEWiefWzKvTfSrSPChHq9uE6B650SD6XuSndI2xRPncWkgWyD6cfiXt9La2twSrsKvuDZemTMHi9bjhgSJ51KFBbIeHV1TWKPLPLNFHOej4wml99DuayibV7ux7uipKN319lYhILQoS8FLNxYLofjrMwuC'
