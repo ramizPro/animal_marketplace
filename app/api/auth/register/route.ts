@@ -16,11 +16,8 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { username, email, password } = body;
-
-    // Hash the password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Create new user in Sanity
     const user = await client.create({
       _type: "user",
       username,
