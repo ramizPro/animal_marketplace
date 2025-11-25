@@ -10,7 +10,7 @@ const client = createClient({
   dataset: "production",        
   useCdn: false,
   apiVersion: "2023-11-24",     
-  token: "sk9jjIiytimZHY4Bp0IyfMDqNEvEWiefWzKvTfSrSPChHq9uE6B650SD6XuSndI2xRPncWkgWyD6cfiXt9La2twSrsKvuDZemTMHi9bjhgSJ51KFBbIeHV1TWKPLPLNFHOej4wml99DuayibV7ux7uipKN319lYhILQoS8FLNxYLofjrMwuC", 
+  token: process.env.SANITY_WRITE_TOKEN,
 });
 
 const handler = NextAuth({
