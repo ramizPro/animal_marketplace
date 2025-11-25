@@ -23,7 +23,12 @@ export default function Home() {
         }}>
       <div className="bg-black/60 shadow p-6 flex flex-col md:flex-row justify-between text-align-center">
         <h1 className="header_title">AgroTrg - Kupujte in prodajajte živino na spletu</h1>
-
+        <Link
+          href="/"
+          className="mt-4 md:mt-0 px-6 py-3 bg-grey-600 text-white rounded-lg hover:bg-grey-700"
+        >
+          Odjava
+        </Link>
         <Link
           href="/objavi_oglas"
           className="mt-4 md:mt-0 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"

@@ -15,7 +15,24 @@ return (
         </Link>
       </div>
       <div className="ads_style_welcome_page">
-        forma za objavo oglasa
+        Opis:
+        <br />
+        Pasma:
+        <br />
+        Tip živali:  
+        <br />
+        Lokacija:
+        <br />
+        Kontakt:
+        <br />
+        Cena:
+        <br />
+          <div className="mt-4 md:mt-0 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Slika+
+          </div>
+          <div className="mt-4 md:mt-0 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+            Objavi oglas
+          </div>
       </div>
     </main>
   );
