@@ -10,10 +10,10 @@ export default function Home() {
         <h1 className="header_title">AgroTrg - Kupujte in prodajajte živino na spletu</h1>
       </div>
       <div className="ads_style_welcome_page">
-          <Link href="/mainPage">
+          <Link href="/login">
             <button className="login_button">Prijava</button>
           </Link>
-          <Link href="/mainPage">
+          <Link href="/signUp">
             <button className="signup_button">Registracija</button>
           </Link>
       </div>

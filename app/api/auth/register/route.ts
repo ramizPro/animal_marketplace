@@ -1,18 +1,11 @@
 'use server';
 
-import { createClient } from "@sanity/client";
+//import { createClient } from "@sanity/client";
 import bcrypt from "bcryptjs";
+import {writeClient} from "@/sanity/lib/right-client";
 
-const client = createClient({
-  projectId: "9zday4uw", 
-  dataset: "production",
-  useCdn: false,
-  token: process.env.SANITY_WRITE_TOKEN,
-  apiVersion: "2023-11-24",
-
-});
+const client = writeClient;
 console.log("TOKEN EXISTS?", !!process.env.SANITY_WRITE_TOKEN);
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
