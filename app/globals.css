@@ -38,7 +38,7 @@ body {
 }
 
 .header_title {
-  color: white;
+  color: black;
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
@@ -105,12 +105,12 @@ body {
   border-radius: 8px;
   font-size: 15px;
 }
-.ads_style_welcome_page{
+.ads_style_welcome_page {
   background-color: rgba(255, 255, 255, 0.8);
   max-width: 20%;
-  max-height: auto;
   margin: auto;
   margin-top: 30px;
   padding: 10px;
   border-radius: 10px;
 }
+

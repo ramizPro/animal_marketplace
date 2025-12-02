@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 import { createClient } from "@sanity/client";
 
 const client = createClient({
-  projectId: "9zday4uw", 
+  projectId: "9zday4uw",
   dataset: "production",        
   useCdn: false,
   apiVersion: "2023-11-24",     

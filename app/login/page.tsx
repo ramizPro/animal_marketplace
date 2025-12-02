@@ -1,4 +1,5 @@
 "use client";
+
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -12,7 +13,7 @@ export default function LoginPage() {
     setLoading(true);
 
     const form = e.currentTarget;
-    const email = (form.elements.namedItem("username") as HTMLInputElement).value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
     const res = await signIn("credentials", {
@@ -31,14 +32,45 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="login-main">
-      <div className="card_style">
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <input name="username" type="email" placeholder="Email" required />
-          <input name="password" type="password" placeholder="Password" required />
-          <button type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
+    <main
+      className="min-h-screen flex justify-center items-center"
+      style={{
+        backgroundImage: "url('/background.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="bg-white/80 p-10 rounded-xl shadow-lg w-80 flex flex-col gap-6 backdrop-blur-sm">
+        <h1
+          style={{ WebkitTextStroke: "1px black" }}
+          className="text-3xl font-bold text-center text-white drop-shadow-md"
+        >
+          Prijava
+        </h1>
+
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <input
+            name="email"
+            type="email"
+            placeholder="Mail"
+            required
+            className="p-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black"
+          />
+
+          <input
+            name="password"
+            type="password"
+            placeholder="Geslo"
+            required
+            className="p-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black"
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-900 text-white p-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
+          >
+            {loading ? "Prijavljanje..." : "Prijava"}
           </button>
         </form>
       </div>
