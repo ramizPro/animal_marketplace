@@ -4,3 +4,8 @@ import user from "./user";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [user],
 };
+
+import oglas from "./oglas";
+
+export const schemaTypes = [user, oglas];
+
