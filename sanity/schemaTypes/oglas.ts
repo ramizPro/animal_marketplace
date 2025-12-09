@@ -11,16 +11,15 @@ export default defineType({
     { name: "lokacija", title: "Lokacija", type: "string" },
     { name: "kontakt", title: "Kontakt", type: "string" },
     { name: "cena", title: "Cena", type: "number" },
+    { name: "avtor", title: "Avtor", type: "string" },
+
     {
       name: "slika",
       title: "Slika",
       type: "image",
-      options: { hotspot: true },
-    },
-    {
-      name: "avtor",
-      title: "Avtor (User ID)",
-      type: "string",
+      options: {
+        hotspot: true,
+      },
     },
   ],
 });

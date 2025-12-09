@@ -19,16 +19,11 @@ export async function GET() {
       lokacija,
       kontakt,
       cena,
-      slika {
-        asset->{
-          _id,
-          url
-        }
-      }
+      "slika": slika.asset->url
     }
   `;
 
   const oglasi = await client.fetch(query);
 
-  return new Response(JSON.stringify(oglasi), { status: 200 });
+  return Response.json(oglasi);
 }
