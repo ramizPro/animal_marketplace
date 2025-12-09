@@ -103,7 +103,7 @@ export default function Home() {
 
         <section className="flex-1">
           <h2 style={{ WebkitTextStroke: "1px black" }}
-            className="text-white text-6xl font-bold mb-10 drop-shadow-lg">
+            className="text-white text-6xl font-bold mb-10 drop-shadow-lg text-center">
             Vsi oglasi
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
