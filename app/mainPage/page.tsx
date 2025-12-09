@@ -13,6 +13,7 @@ export default function Home() {
   } as const;
 
   type VrstaKey = keyof typeof PASME;
+
   const [oglasi, setOglasi] = useState<any[]>([]);
   const [vrsta, setVrsta] = useState<VrstaKey | "">("");
   const [pasma, setPasma] = useState("");
@@ -21,12 +22,23 @@ export default function Home() {
     const fetchOglasi = async () => {
       const res = await fetch("/api/oglasi");
       const data = await res.json();
-      console.log("OGLASI IZ API:", data);
       setOglasi(data);
     };
 
     fetchOglasi();
   }, []);
+  const filtriraniOglasi = oglasi.filter((oglas) => {
+  const matchVrsta =
+    !vrsta || oglas.tipZivali?.toLowerCase() === vrsta.toLowerCase();
+
+  const matchPasma =
+    !pasma ||
+    oglas.pasma?.toLowerCase().includes(pasma.toLowerCase()) ||
+    pasma.toLowerCase().includes(oglas.pasma?.toLowerCase());
+
+  return matchVrsta && matchPasma;
+  });
+
 
   return (
     <main
@@ -38,7 +50,7 @@ export default function Home() {
         backgroundPosition: "center",
       }}
     >
-
+      {/* HEADER */}
       <div className="bg-black/60 shadow p-6 flex flex-col md:flex-row justify-between text-align-center">
         <h1 className="header_title">
           AgroTrg - Kupujte in prodajajte živino na spletu
@@ -60,6 +72,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col md:flex-row mt-6 gap-6 px-6">
+        {/* FILTRI */}
         <aside className="w-full md:w-64 bg-white shadow-md rounded-xl p-4 h-fit">
           <h2 className="text-xl font-semibold mb-4">Filtri</h2>
 
@@ -90,7 +103,7 @@ export default function Home() {
               onChange={(e) => setPasma(e.target.value)}
               disabled={!vrsta}
             >
-              {!vrsta && <option>Izberite vrsto...</option>}
+              {<option>Izberite vrsto...</option>}
               {vrsta &&
                 PASME[vrsta].map((p) => (
                   <option key={p} value={p}>
@@ -101,14 +114,21 @@ export default function Home() {
           </div>
         </aside>
 
+        {/* OGLASI */}
         <section className="flex-1">
-          <h2 style={{ WebkitTextStroke: "1px black" }}
-            className="text-white text-6xl font-bold mb-10 drop-shadow-lg text-center">
+          <h2
+            style={{ WebkitTextStroke: "1px black" }}
+            className="text-white text-6xl font-bold mb-10 drop-shadow-lg text-center"
+          >
             Vsi oglasi
           </h2>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {oglasi.map((oglas) => (
-              <div key={oglas._id} className="bg-white rounded-xl shadow p-4 hover:scale-105 transition-transform">
+            {filtriraniOglasi.map((oglas) => (
+              <div
+                key={oglas._id}
+                className="bg-white rounded-xl shadow p-4 hover:scale-105 hover:shadow-2xl transition-transform"
+              >
                 {oglas.slika && (
                   <img
                     src={oglas.slika}
@@ -118,10 +138,18 @@ export default function Home() {
                 )}
 
                 <h3 className="font-bold text-lg mb-1">{oglas.opis}</h3>
-                <p><b>Pasma:</b> {oglas.pasma}</p>
-                <p><b>Tip:</b> {oglas.tipZivali}</p>
-                <p><b>Lokacija:</b> {oglas.lokacija}</p>
-                <p><b>Kontakt:</b> {oglas.kontakt}</p>
+                <p>
+                  <b>Pasma:</b> {oglas.pasma}
+                </p>
+                <p>
+                  <b>Tip:</b> {oglas.tipZivali}
+                </p>
+                <p>
+                  <b>Lokacija:</b> {oglas.lokacija}
+                </p>
+                <p>
+                  <b>Kontakt:</b> {oglas.kontakt}
+                </p>
 
                 <p className="mt-2 text-xl font-bold text-green-600">
                   {oglas.cena} €

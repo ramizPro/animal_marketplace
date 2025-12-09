@@ -4,10 +4,23 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+const PASME = {
+  Govedo: ["Holstein", "Limousine", "Angus", "Hereford"],
+  Prašiči: ["Duroc", "Landrace", "Pietrain"],
+  "Ovce & Koze": ["Burska", "Istrska", "Drežniška"],
+  Perutnina: ["Kokoši", "Race", "Purani"],
+  Konji: ["Lipicanec", "Haflinger", "Quarter Horse"],
+} as const;
+
+type VrstaKey = keyof typeof PASME;
+
 export default function Oglas() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  
+  const [vrsta, setVrsta] = useState<VrstaKey | "">("");
+  const [pasma, setPasma] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,13 +29,14 @@ export default function Oglas() {
     const form = e.currentTarget;
 
     const opis = (form.elements.namedItem("opis") as HTMLInputElement).value;
-    const pasma = (form.elements.namedItem("pasma") as HTMLInputElement).value;
-    const tipZivali = (form.elements.namedItem("tipZivali") as HTMLInputElement).value;
     const lokacija = (form.elements.namedItem("lokacija") as HTMLInputElement).value;
     const kontakt = (form.elements.namedItem("kontakt") as HTMLInputElement).value;
     const cena = Number(
       (form.elements.namedItem("cena") as HTMLInputElement).value
     );
+
+    const tipZivali = vrsta;
+    const pasmaValue = pasma;
 
     let slikaRef = null;
 
@@ -45,19 +59,18 @@ export default function Oglas() {
         },
       };
     }
-
     const res = await fetch("/api/oglas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         opis,
-        pasma,
+        pasma: pasmaValue,
         tipZivali,
         lokacija,
         kontakt,
         cena,
-        slika: slikaRef,   
-        avtor: "anon",     
+        slika: slikaRef,
+        avtor: "anon",
       }),
     });
 
@@ -90,16 +103,66 @@ export default function Oglas() {
           Nazaj
         </Link>
       </div>
-
       <form
         onSubmit={handleSubmit}
         className="bg-white/80 p-8 rounded-xl shadow-lg w-96 mx-auto mt-10 flex flex-col gap-4"
       >
-        <input name="opis" placeholder="Opis" required className="p-2 border rounded" />
-        <input name="pasma" placeholder="Pasma" required className="p-2 border rounded" />
-        <input name="tipZivali" placeholder="Tip živali" required className="p-2 border rounded" />
-        <input name="lokacija" placeholder="Lokacija" required className="p-2 border rounded" />
-        <input name="kontakt" placeholder="Kontakt" required className="p-2 border rounded" />
+        <input
+          name="opis"
+          placeholder="Opis"
+          required
+          className="p-2 border rounded"
+        />
+
+        {/* vrsta */}
+        <select
+          value={vrsta}
+          onChange={(e) => {
+            setVrsta(e.target.value as VrstaKey);
+            setPasma("");
+          }}
+          required
+          className="p-2 border rounded"
+        >
+          <option value="">Izberi vrsto živali</option>
+          {Object.keys(PASME).map((v) => (
+            <option key={v} value={v}>
+              {v}
+            </option>
+          ))}
+        </select>
+
+        {/* pasma */}
+        <select
+          value={pasma}
+          onChange={(e) => setPasma(e.target.value)}
+          required
+          disabled={!vrsta}
+          className="p-2 border rounded"
+        >
+          <option value="">Izberi pasmo</option>
+          {vrsta &&
+            PASME[vrsta].map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+        </select>
+
+        <input
+          name="lokacija"
+          placeholder="Lokacija"
+          required
+          className="p-2 border rounded"
+        />
+
+        <input
+          name="kontakt"
+          placeholder="Kontakt"
+          required
+          className="p-2 border rounded"
+        />
+
         <input
           name="cena"
           type="number"
@@ -114,7 +177,6 @@ export default function Oglas() {
           className="p-2 border rounded bg-white"
           required
         />
-
         <button
           type="submit"
           disabled={loading}
