@@ -18,7 +18,7 @@ export default function Oglas() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
-  
+
   const [vrsta, setVrsta] = useState<VrstaKey | "">("");
   const [pasma, setPasma] = useState("");
 
@@ -92,16 +92,23 @@ export default function Oglas() {
         backgroundSize: "cover",
       }}
     >
-      <div className="bg-black/60 shadow p-6 flex flex-col md:flex-row justify-between text-align-center">
-        <h1 className="header_title">
-          AgroTrg - Kupujte in prodajajte živino na spletu
-        </h1>
-        <Link
-          href="/mainPage"
-          className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"
-        >
-          Nazaj
-        </Link>
+      <div className="bg-black/60 shadow py-3 px-6 flex items-center justify-between relative backdrop-blur-md">
+          <Link
+            href="/"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
+          >
+            Odjava
+          </Link>
+          <h1 style={{ WebkitTextStroke: "1px black" }} 
+          className="text-white text-5xl font-bold mb-10 drop-shadow-lg">
+            AgroTrg
+          </h1>
+          <Link
+            href="/mainPage"
+            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
+          >
+            Nazaj 
+          </Link>
       </div>
       <form
         onSubmit={handleSubmit}

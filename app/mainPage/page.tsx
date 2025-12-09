@@ -51,24 +51,23 @@ export default function Home() {
       }}
     >
       {/* HEADER */}
-      <div className="bg-black/60 shadow p-6 flex flex-col md:flex-row justify-between text-align-center">
-        <h1 className="header_title">
-          AgroTrg - Kupujte in prodajajte živino na spletu
-        </h1>
-
-        <Link
-          href="/"
-          className="mt-4 md:mt-0 px-6 py-3 bg-grey-600 text-white rounded-lg hover:bg-grey-700"
-        >
-          Odjava
-        </Link>
-
-        <Link
-          href="/objavi_oglas"
-          className="mt-4 md:mt-0 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"
-        >
-          + Objavi oglas
-        </Link>
+      <div className="bg-black/60 shadow py-3 px-6 flex items-center justify-between relative backdrop-blur-md">
+          <Link
+            href="/"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
+          >
+            Odjava
+          </Link>
+          <h1 style={{ WebkitTextStroke: "1px black" }} 
+          className="text-white text-5xl font-bold mb-10 drop-shadow-lg">
+            AgroTrg
+          </h1>
+          <Link
+            href="/objavi_oglas"
+            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
+          >
+            Objavi 
+          </Link>
       </div>
 
       <div className="flex flex-col md:flex-row mt-6 gap-6 px-6">
@@ -118,7 +117,7 @@ export default function Home() {
         <section className="flex-1">
           <h2
             style={{ WebkitTextStroke: "1px black" }}
-            className="text-white text-6xl font-bold mb-10 drop-shadow-lg text-center"
+            className="text-white text-6xl font-bold mb-10 drop-shadow-lg "
           >
             Vsi oglasi
           </h2>

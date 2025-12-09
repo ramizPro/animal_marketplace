@@ -115,3 +115,14 @@ body {
   border-radius: 10px;
 }
 
+/* Skrije scrollbar, scroll še vedno dela */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE, Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
