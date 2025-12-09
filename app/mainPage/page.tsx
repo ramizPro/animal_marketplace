@@ -101,7 +101,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {oglasi.map((oglas) => (
               <div key={oglas._id} className="bg-white rounded-xl shadow p-4 hover:scale-105 transition-transform">
-                {oglas.slika?.asset?.url && (
+                {oglas.slika && (
                   <img
                     src={oglas.slika}
                     alt="oglas"
