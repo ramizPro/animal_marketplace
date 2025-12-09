@@ -24,7 +24,6 @@ export default function Oglas() {
       (form.elements.namedItem("cena") as HTMLInputElement).value
     );
 
-    // ✅ 1. UPLOAD SLIKE
     let slikaRef = null;
 
     if (imageFile) {
@@ -47,7 +46,6 @@ export default function Oglas() {
       };
     }
 
-    // ✅ 2. OBJAVA OGLASA V SANITY
     const res = await fetch("/api/oglas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,8 +56,8 @@ export default function Oglas() {
         lokacija,
         kontakt,
         cena,
-        slika: slikaRef,   // ✅ TU SE SHRANI SLIKA
-        avtor: "anon",     // kasneje vezava na prijavljenega userja
+        slika: slikaRef,   
+        avtor: "anon",     
       }),
     });
 
@@ -109,8 +107,6 @@ export default function Oglas() {
           required
           className="p-2 border rounded"
         />
-
-        {/* ✅ INPUT ZA SLIKO */}
         <input
           type="file"
           accept="image/*"

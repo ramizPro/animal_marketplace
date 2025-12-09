@@ -14,7 +14,16 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const { opis, pasma, tipZivali, lokacija, kontakt, cena, avtor } = body;
+    const {
+      opis,
+      pasma,
+      tipZivali,
+      lokacija,
+      kontakt,
+      cena,
+      avtor,
+      slika,  
+    } = body;
 
     const doc = await client.create({
       _type: "oglas",
@@ -25,6 +34,7 @@ export async function POST(req: Request) {
       kontakt,
       cena,
       avtor,
+      slika,   
     });
 
     return new Response(JSON.stringify({ success: true, doc }), {
