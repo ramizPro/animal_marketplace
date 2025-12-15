@@ -115,7 +115,7 @@ body {
   border-radius: 10px;
 }
 
-/* Skrije scrollbar, scroll še vedno dela */
+/* Skrije scrollbare */
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
