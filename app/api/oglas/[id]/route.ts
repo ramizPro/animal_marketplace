@@ -1,7 +1,9 @@
+'use server';
+
 import { createClient } from "@sanity/client";
 import { getServerSession } from "next-auth";
-import type { Session } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { NextRequest } from "next/server";
 
 const client = createClient({
   projectId: "9zday4uw",
@@ -11,73 +13,62 @@ const client = createClient({
   token: process.env.SANITY_WRITE_TOKEN,
 });
 
-function getUser(session: Session | null) {
-  if (!session?.user) return null;
-  return session.user as {
-    id: string;
-    role: "user" | "admin";
-  };
-}
-
+// GET /api/oglasi/[id]
 export async function GET(
-  _: Request,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
-  const oglas = await client.getDocument(params.id);
+  const { id } = await context.params;
+  const oglas = await client.getDocument(id);
   return Response.json(oglas);
 }
 
+// PUT /api/oglasi/[id]
 export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   const session = await getServerSession(authOptions);
-  const user = getUser(session);   
-
-
-  if (!user) {
+  if (!session?.user?.id) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const oglas: any = await client.getDocument(params.id);
+  const { id } = await context.params;
+  const oglas: any = await client.getDocument(id);
 
-  const isOwner = oglas?.avtor === user.id;
-  const isAdmin = user.role === "admin";
+  const isOwner = oglas?.avtor === session.user.id;
+  const isAdmin = session.user.role === "admin";
 
   if (!isOwner && !isAdmin) {
     return new Response("Forbidden", { status: 403 });
   }
 
-  const data = await req.json();
-
-  const updated = await client
-    .patch(params.id)
-    .set(data)
-    .commit();
+  const data = await request.json();
+  const updated = await client.patch(id).set(data).commit();
 
   return Response.json(updated);
 }
 
+// DELETE /api/oglasi/[id]
 export async function DELETE(
-  _: Request,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   const session = await getServerSession(authOptions);
-  const user = getUser(session);
-
-  if (!user) {
+  if (!session?.user?.id) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const oglas: any = await client.getDocument(params.id);
+  const { id } = await context.params;
+  const oglas: any = await client.getDocument(id);
 
-  const isOwner = oglas?.avtor === user.id;
-  const isAdmin = user.role === "admin";
+  const isOwner = oglas?.avtor === session.user.id;
+  const isAdmin = session.user.role === "admin";
 
   if (!isOwner && !isAdmin) {
     return new Response("Forbidden", { status: 403 });
   }
 
-  await client.delete(params.id);
+  await client.delete(id);
   return new Response("Deleted", { status: 200 });
 }
