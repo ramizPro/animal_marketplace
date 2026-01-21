@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
+  //seznam vrst živali in pasem
   const PASME = {
     Govedo: ["Holstein", "Limousine", "Angus", "Hereford"],
     Prašiči: ["Duroc", "Landrace", "Pietrain"],
@@ -12,12 +13,23 @@ export default function Home() {
     Konji: ["Lipicanec", "Haflinger", "Quarter Horse"],
   } as const;
 
+  
+  /*
+   Tip za dovoljene vrednosti "vrsta".
+   Preprečuje uporabo neveljavnih ključev izven objekta PASME.
+   */
   type VrstaKey = keyof typeof PASME;
 
+  //stanje za oglase, vrste in pasme
   const [oglasi, setOglasi] = useState<any[]>([]);
   const [vrsta, setVrsta] = useState<VrstaKey | "">("");
   const [pasma, setPasma] = useState("");
 
+  /*
+    ko se stran zažene se tudi ta funkcija zažene,
+    pridobi vse oglase iz API,
+    ter jih shrane v stanje "Oglasi"
+  */
   useEffect(() => {
     const fetchOglasi = async () => {
       const res = await fetch("/api/oglas");
@@ -27,6 +39,8 @@ export default function Home() {
     fetchOglasi();
   }, []);
 
+  //funkcija za filtreranje oglasov.
+  //filtrera po izbrani pasmi in po vrsti živali
   const filtriraniOglasi = oglasi.filter((oglas) => {
     const matchVrsta =
       !vrsta || oglas.tipZivali?.toLowerCase() === vrsta.toLowerCase();
