@@ -2,6 +2,7 @@
 
 import { createClient } from "@sanity/client";
 
+//inicializacija / povezava s bazo
 const client = createClient({
   projectId: "9zday4uw",
   dataset: "production",
@@ -9,6 +10,12 @@ const client = createClient({
   useCdn: false,
 });
 
+/*
+ GET endpoint za pridobivanje vseh oglasov.
+ pogleda podatke v bazi
+ sortiranje po datumu ustvarjanja (najnovejši prvi)
+ vračanje samo potrebnih polj
+ */
 export async function GET() {
   const query = `
     *[_type == "oglas"] | order(_createdAt desc) {
