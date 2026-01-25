@@ -9,7 +9,6 @@ import Link from "next/link";
  * seznam vrst živali in pasem.
  * Uporablja se za generiranje select polj.
  */
-//realno bi bilo lahko to v databazi
 const PASME = {
   Govedo: ["Holstein", "Limousine", "Angus", "Hereford"],
   Prašiči: ["Duroc", "Landrace", "Pietrain"],

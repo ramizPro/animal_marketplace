@@ -7,6 +7,7 @@ type Props = {
   };
 };
 
+//stran za urejanje oglasov, ki služi kot nek placeholder.
 export default function EditOglasPage({ params }: Props) {
   const id = params.id;
 

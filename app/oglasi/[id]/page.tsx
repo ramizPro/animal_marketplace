@@ -23,10 +23,12 @@ export default async function OglasPage({
 }) {
   const { id } = await params;
 
+  // pridobi uporabnikško sejo
   const session = await getServerSession(authOptions);
   const userId = (session?.user as any)?.id;
   const role = (session?.user as any)?.role;
 
+  //pridobi query za posamezen oglas
   const oglas = await client.fetch(
     `*[_type=="oglas" && _id==$id][0]{
       _id,

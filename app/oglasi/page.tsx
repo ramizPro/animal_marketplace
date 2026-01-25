@@ -1,6 +1,10 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
+/*
+  Pridobi posamezen oglas preko API-ja.
+  cache: "no-store" zagotovi, da vedno dobimo sveže podatke.
+ */
 async function getOglas(id: string) {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/oglas/${id}`, {
     cache: "no-store",
