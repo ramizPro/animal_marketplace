@@ -13,7 +13,7 @@ const client = createClient({
   token: process.env.SANITY_WRITE_TOKEN,
 });
 
-// GET /api/oglasi/[id]
+//pridobi posamezen oglas
 export async function GET(
   _request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -23,7 +23,7 @@ export async function GET(
   return Response.json(oglas);
 }
 
-// PUT /api/oglasi/[id]
+//posodobi oglas
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -49,7 +49,7 @@ export async function PUT(
   return Response.json(updated);
 }
 
-// DELETE /api/oglasi/[id]
+//izbriše oglas
 export async function DELETE(
   _request: NextRequest,
   context: { params: Promise<{ id: string }> }

@@ -8,6 +8,11 @@ export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
+   /*
+    Funkcija se sproži, ko se uporabnik prijavi.
+     prebere email in geslo iz forma
+     uporabi NextAuth signIn z "credentials" providerjem
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -16,6 +21,7 @@ export default function LoginPage() {
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
+    //NextAuth funkcija za sing in
     const res = await signIn("credentials", {
       redirect: false,
       email,

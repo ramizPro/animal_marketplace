@@ -4,6 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+
+/**
+ * seznam vrst živali in pasem.
+ * Uporablja se za generiranje select polj.
+ */
 const PASME = {
   Govedo: ["Holstein", "Limousine", "Angus", "Hereford"],
   Prašiči: ["Duroc", "Landrace", "Pietrain"],
@@ -22,6 +27,12 @@ export default function Oglas() {
   const [vrsta, setVrsta] = useState<VrstaKey | "">("");
   const [pasma, setPasma] = useState("");
 
+  /**
+    Funkcija se sproži ob oddaji obrazca.
+    vzame podatke iz forms
+    po potrebi naloži sliko
+    ustvari nov oglas preko API
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -40,6 +51,7 @@ export default function Oglas() {
 
     let slikaRef = null;
 
+    //če uporabnik doda sliko se ta shrani na databazo z API call
     if (imageFile) {
       const imgData = new FormData();
       imgData.append("file", imageFile);
@@ -59,6 +71,8 @@ export default function Oglas() {
         },
       };
     }
+
+    //naredi nov oglas
     const res = await fetch("/api/oglas", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

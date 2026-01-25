@@ -3,25 +3,33 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUpPage() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const router = useRouter(); //namenjeno za pošiljenje uporabnika na drugo stran, ko se uporabnik prijavi
+  const [loading, setLoading] = useState(false); //namenjeno za prikaz loading takrat ko se funkcija izvaja
 
+  /*
+  Funkcija, ki se sproži ko se uporabnik želi registrerati,
+   prebere vse vrednosti,
+   pošlje zahtevo API register.
+  */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
+    //prebere vrednosti iz forms
     const form = e.currentTarget;
     const username = (form.elements.namedItem("username") as HTMLInputElement).value;
     const email = (form.elements.namedItem("email") as HTMLInputElement).value;
     const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
     try {
+      //pošlje podatke na API za registracijo
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, email, password }),
       });
 
+      //če API vrže napako, se izpiše, ter pošlje nazaj uporabnika na /login
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || "Registration failed");

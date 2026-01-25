@@ -12,6 +12,7 @@ const client = createClient({
   token: process.env.SANITY_WRITE_TOKEN,
 });
 
+//pridobi vse oglase
 export async function GET() {
   const query = `
     *[_type == "oglas"] | order(_createdAt desc) {
@@ -31,6 +32,7 @@ export async function GET() {
   return Response.json(oglasi);
 }
 
+//ustvari nov oglas 
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 

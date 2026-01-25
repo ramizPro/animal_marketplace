@@ -10,6 +10,7 @@ const client = createClient({
   token: process.env.SANITY_WRITE_TOKEN,
 });
 
+//POST za nalaganje slike, ki dobi sliko preko formsData (iz objavi_oglas/page.tsx) in jo naloži v bazo
 export async function POST(req: Request) {
   try {
     const data = await req.formData();

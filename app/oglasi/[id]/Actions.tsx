@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 
+//funkcija je namenjena za brisanje oglasov
+//ko pritisneš na gumb izbriši se izvrši ta funkcija
 export default function OglasActions({ id }: { id: string }) {
   const router = useRouter();
 
