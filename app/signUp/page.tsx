@@ -85,7 +85,7 @@ return (
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-900 text-white p-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
+            className="w-full bg-second text-white p-3 rounded-lg text-lg font-semibold hover:bg-secondAcc transition"
           >
             {loading ? "Registriranje..." : "Registracija"}
           </button>

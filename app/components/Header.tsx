@@ -5,7 +5,7 @@ export function HeaderMain(){
       <div className="bg-black/60 backdrop-blur-md p-4 flex justify-between items-center">
         <Link
           href="/"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+          className="px-4 py-2 bg-second text-white rounded-lg"
         >
           Odjava
         </Link>
@@ -14,7 +14,7 @@ export function HeaderMain(){
 
         <Link
           href="/objavi_oglas"
-          className="px-4 py-2 bg-green-600 text-white rounded-lg"
+          className="px-4 py-2 bg-main text-white rounded-lg"
         >
           Objavi
         </Link>
@@ -27,7 +27,7 @@ export function HeaderNazaj(){
       <div className="bg-black/60 backdrop-blur-md p-4 flex justify-between items-center">
         <Link
           href="/"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+          className="px-4 py-2 bg-second text-white rounded-lg"
         >
           Odjava
         </Link>
@@ -36,7 +36,7 @@ export function HeaderNazaj(){
 
         <Link
           href="/mainPage"
-          className="px-4 py-2 bg-green-600 text-white rounded-lg"
+          className="px-4 py-2 bg-main text-white rounded-lg"
         >
           Nazaj
         </Link>

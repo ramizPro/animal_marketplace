@@ -104,7 +104,7 @@ export default function Home() {
                 )}
                 <h3 className="font-bold">{oglas.opis}</h3>
                 <p>{oglas.pasma}</p>
-                <p className="text-green-600 font-bold">{oglas.cena} €</p>
+                <p className="text-main font-bold">{oglas.cena} €</p>
               </Link>
             ))}
           </div>

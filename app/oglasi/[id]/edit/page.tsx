@@ -23,7 +23,7 @@ export default function EditOglasPage({ params }: Props) {
 
       <Link
         href={`/oglasi/${id}`}
-        className="px-4 py-2 bg-blue-600 text-white rounded"
+        className="px-4 py-2 bg-second text-white rounded"
       >
         Nazaj na oglas
       </Link>

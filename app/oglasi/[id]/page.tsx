@@ -74,7 +74,7 @@ export default async function OglasPage({
         <p><b>Lokacija:</b> {oglas.lokacija}</p>
         <p><b>Kontakt:</b> {oglas.kontakt}</p>
 
-        <p className="mt-4 text-2xl font-bold text-green-600">
+        <p className="mt-4 text-2xl font-bold text-main">
           {oglas.cena} €
         </p>
         {canEdit && <OglasActions id={oglas._id} />}
