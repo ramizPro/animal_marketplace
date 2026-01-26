@@ -39,7 +39,7 @@ export default async function OglasPage({
         <p><b>Lokacija:</b> {oglas.lokacija}</p>
         <p><b>Kontakt:</b> {oglas.kontakt}</p>
 
-        <p className="mt-4 text-2xl font-bold text-green-600">
+        <p className="mt-4 text-2xl font-bold text-main">
           {oglas.cena} €
         </p>
 
@@ -47,7 +47,7 @@ export default async function OglasPage({
           <div className="flex gap-4 mt-6">
             <a
               href={`/oglas/${oglas._id}/edit`}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+              className="px-4 py-2 bg-second text-white rounded-lg"
             >
               Uredi
             </a>

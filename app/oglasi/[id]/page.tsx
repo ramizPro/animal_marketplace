@@ -1,16 +1,12 @@
-import { createClient } from "@sanity/client";
+import { sanityClient, sanityWriteClient } from "@/sanity/lib/sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import OglasActions from "./Actions";
+import { HeaderNazaj } from "@/app/components/Header";
 
-const client = createClient({
-  projectId: "9zday4uw",
-  dataset: "production",
-  apiVersion: "2023-11-24",
-  useCdn: false,
-});
+const client = sanityClient;
 
 type Props = {
   params: { id: string };
@@ -60,23 +56,7 @@ export default async function OglasPage({
       }}
     >
       {/* HEADER */}
-      <div className="bg-black/60 backdrop-blur-md p-4 flex justify-between items-center">
-        <Link
-          href="/"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-        >
-          Odjava
-        </Link>
-
-        <h1 className="text-white text-4xl font-bold">AgroTrg</h1>
-
-        <Link
-          href="/mainPage"
-          className="px-4 py-2 bg-green-600 text-white rounded-lg"
-        >
-          Nazaj
-        </Link>
-      </div>
+      <HeaderNazaj />
 
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow p-6 mt-6">
         {oglas.slika && (
@@ -94,7 +74,7 @@ export default async function OglasPage({
         <p><b>Lokacija:</b> {oglas.lokacija}</p>
         <p><b>Kontakt:</b> {oglas.kontakt}</p>
 
-        <p className="mt-4 text-2xl font-bold text-green-600">
+        <p className="mt-4 text-2xl font-bold text-main">
           {oglas.cena} €
         </p>
         {canEdit && <OglasActions id={oglas._id} />}

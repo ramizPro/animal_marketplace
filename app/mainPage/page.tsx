@@ -2,24 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { PASME, VrstaKey } from "@/lib/constants";
+import { HeaderMain } from "@/app/components/Header";
 
 export default function Home() {
-  //seznam vrst živali in pasem
-  const PASME = {
-    Govedo: ["Holstein", "Limousine", "Angus", "Hereford"],
-    Prašiči: ["Duroc", "Landrace", "Pietrain"],
-    "Ovce & Koze": ["Burska", "Istrska", "Drežniška"],
-    Perutnina: ["Kokoši", "Race", "Purani"],
-    Konji: ["Lipicanec", "Haflinger", "Quarter Horse"],
-  } as const;
-
-  
-  /*
-   Tip za dovoljene vrednosti "vrsta".
-   Preprečuje uporabo neveljavnih ključev izven objekta PASME.
-   */
-  type VrstaKey = keyof typeof PASME;
-
   //stanje za oglase, vrste in pasme
   const [oglasi, setOglasi] = useState<any[]>([]);
   const [vrsta, setVrsta] = useState<VrstaKey | "">("");
@@ -62,23 +48,7 @@ export default function Home() {
       }}
     >
       {/* HEADER */}
-      <div className="bg-black/60 backdrop-blur-md p-4 flex justify-between items-center">
-        <Link
-          href="/"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-        >
-          Odjava
-        </Link>
-
-        <h1 className="text-white text-4xl font-bold">AgroTrg</h1>
-
-        <Link
-          href="/objavi_oglas"
-          className="px-4 py-2 bg-green-600 text-white rounded-lg"
-        >
-          Objavi
-        </Link>
-      </div>
+      <HeaderMain />
 
       <div className="flex gap-6 p-6">
         {/* FILTRI */}
@@ -134,7 +104,7 @@ export default function Home() {
                 )}
                 <h3 className="font-bold">{oglas.opis}</h3>
                 <p>{oglas.pasma}</p>
-                <p className="text-green-600 font-bold">{oglas.cena} €</p>
+                <p className="text-main font-bold">{oglas.cena} €</p>
               </Link>
             ))}
           </div>

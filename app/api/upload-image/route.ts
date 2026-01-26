@@ -1,14 +1,8 @@
 'use server';
 
-import { createClient } from "@sanity/client";
+import { sanityClient, sanityWriteClient } from "@/sanity/lib/sanity";
 
-const client = createClient({
-  projectId: "9zday4uw",
-  dataset: "production",
-  useCdn: false,
-  apiVersion: "2023-11-24",
-  token: process.env.SANITY_WRITE_TOKEN,
-});
+const client = sanityWriteClient;
 
 //POST za nalaganje slike, ki dobi sliko preko formsData (iz objavi_oglas/page.tsx) in jo naloži v bazo
 export async function POST(req: Request) {

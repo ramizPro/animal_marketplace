@@ -1,17 +1,10 @@
 'use server';
 
-
 import bcrypt from "bcryptjs";
-import { createClient } from "@sanity/client";
+import { sanityClient, sanityWriteClient } from "@/sanity/lib/sanity";
 
 //inicializacija sanity client, da lahko prosto dostopa do baze
-const client = createClient({
-  projectId: "9zday4uw",
-  dataset: "production",
-  useCdn: false,
-  apiVersion: "2023-11-24",
-  token: process.env.SANITY_WRITE_TOKEN,
-});
+const client = sanityWriteClient;
 
 console.log("TOKEN EXISTS?", !!process.env.SANITY_WRITE_TOKEN);
 

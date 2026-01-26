@@ -3,21 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
-
-/**
- * seznam vrst živali in pasem.
- * Uporablja se za generiranje select polj.
- */
-const PASME = {
-  Govedo: ["Holstein", "Limousine", "Angus", "Hereford"],
-  Prašiči: ["Duroc", "Landrace", "Pietrain"],
-  "Ovce & Koze": ["Burska", "Istrska", "Drežniška"],
-  Perutnina: ["Kokoši", "Race", "Purani"],
-  Konji: ["Lipicanec", "Haflinger", "Quarter Horse"],
-} as const;
-
-type VrstaKey = keyof typeof PASME;
+import { PASME, VrstaKey } from "@/lib/constants";
+import { HeaderNazaj } from "../components/Header";
 
 export default function Oglas() {
   const router = useRouter();
@@ -106,24 +93,9 @@ export default function Oglas() {
         backgroundSize: "cover",
       }}
     >
-      <div className="bg-black/60 shadow py-3 px-6 flex items-center justify-between relative backdrop-blur-md">
-          <Link
-            href="/"
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold"
-          >
-            Odjava
-          </Link>
-          <h1 style={{ WebkitTextStroke: "1px black" }} 
-          className="text-white text-5xl font-bold mb-10 drop-shadow-lg">
-            AgroTrg
-          </h1>
-          <Link
-            href="/mainPage"
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-semibold"
-          >
-            Nazaj 
-          </Link>
-      </div>
+      
+      <HeaderNazaj />
+      
       <form
         onSubmit={handleSubmit}
         className="bg-white/80 p-8 rounded-xl shadow-lg w-96 mx-auto mt-10 flex flex-col gap-4"
@@ -201,7 +173,7 @@ export default function Oglas() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700"
+          className="bg-second text-white p-3 rounded-lg hover:bg-secondAcc"
         >
           {loading ? "Objavljam..." : "Objavi oglas"}
         </button>
