@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { PASME, VrstaKey } from "@/lib/constants";
+import { HeaderMain } from "@/app/components/Header";
 
 export default function Home() {
   //stanje za oglase, vrste in pasme
@@ -47,23 +48,7 @@ export default function Home() {
       }}
     >
       {/* HEADER */}
-      <div className="bg-black/60 backdrop-blur-md p-4 flex justify-between items-center">
-        <Link
-          href="/"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-        >
-          Odjava
-        </Link>
-
-        <h1 className="text-white text-4xl font-bold">AgroTrg</h1>
-
-        <Link
-          href="/objavi_oglas"
-          className="px-4 py-2 bg-green-600 text-white rounded-lg"
-        >
-          Objavi
-        </Link>
-      </div>
+      <HeaderMain />
 
       <div className="flex gap-6 p-6">
         {/* FILTRI */}
