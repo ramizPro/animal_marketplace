@@ -1,16 +1,10 @@
 'use server';
 
-import { createClient } from "@sanity/client";
+import { sanityClient, sanityWriteClient } from "@/sanity/lib/sanity";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-const client = createClient({
-  projectId: "9zday4uw",
-  dataset: "production",
-  apiVersion: "2023-11-24",
-  useCdn: false,
-  token: process.env.SANITY_WRITE_TOKEN,
-});
+const client = sanityWriteClient;
 
 //pridobi vse oglase
 export async function GET() {

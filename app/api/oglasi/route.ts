@@ -1,14 +1,8 @@
 'use server';
 
-import { createClient } from "@sanity/client";
+import { sanityClient, sanityWriteClient } from "@/sanity/lib/sanity";
 
-//inicializacija / povezava s bazo
-const client = createClient({
-  projectId: "9zday4uw",
-  dataset: "production",
-  apiVersion: "2023-11-24",
-  useCdn: false,
-});
+const client = sanityClient;
 
 /*
  GET endpoint za pridobivanje vseh oglasov.

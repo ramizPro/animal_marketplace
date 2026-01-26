@@ -1,16 +1,11 @@
-import { createClient } from "@sanity/client";
+import { sanityClient, sanityWriteClient } from "@/sanity/lib/sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import OglasActions from "./Actions";
 
-const client = createClient({
-  projectId: "9zday4uw",
-  dataset: "production",
-  apiVersion: "2023-11-24",
-  useCdn: false,
-});
+const client = sanityClient;
 
 type Props = {
   params: { id: string };
