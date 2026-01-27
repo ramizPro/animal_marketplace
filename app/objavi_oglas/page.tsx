@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react"; //FIX: Dodano
 import Link from "next/link";
 import { PASME, VrstaKey } from "@/lib/constants";
 import { HeaderNazaj } from "../components/Header";
 
 export default function Oglas() {
   const router = useRouter();
+  const { data: session } = useSession(); //FIX: Pridobi sejo
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
@@ -22,6 +24,14 @@ export default function Oglas() {
    */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    //Bug #2: Preveri če je uporabnik prijavljen
+    if (!session?.user?.id) {
+      alert("Nisi prijavljen!");
+      router.push("/login");
+      return;
+    }
+    
     setLoading(true);
 
     const form = e.currentTarget;
@@ -38,7 +48,7 @@ export default function Oglas() {
 
     let slikaRef = null;
 
-    //če uporabnik doda sliko se ta shrani na databazo z API call
+    //Če uporabnik doda sliko se ta shrani na databazo z API call
     if (imageFile) {
       const imgData = new FormData();
       imgData.append("file", imageFile);
@@ -71,7 +81,8 @@ export default function Oglas() {
         kontakt,
         cena,
         slika: slikaRef,
-        avtor: "anon",
+        // Fix #2: Uporabi pravi ID uporabnika namesto "anon"
+        // Ta del je sedaj obravnavan v API route (avtor se doda avtomatsko)
       }),
     });
 
@@ -79,11 +90,26 @@ export default function Oglas() {
       alert("Oglas uspešno objavljen!");
       router.push("/mainPage");
     } else {
-      alert("Napaka pri objavi oglasa.");
+      const error = await res.json();
+      alert(error.error || "Napaka pri objavi oglasa.");
     }
 
     setLoading(false);
   };
+
+  //Fix #2: Preveri če je uporabnik prijavljen preden prikaže formo
+  if (!session) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="mb-4">Nisi prijavljen. Prosim prijavi se za objavo oglasa.</p>
+          <Link href="/login" className="px-4 py-2 bg-second text-white rounded-lg">
+            Prijava
+          </Link>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main
