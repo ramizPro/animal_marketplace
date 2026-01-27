@@ -11,17 +11,39 @@ export default function Home() {
   const [vrsta, setVrsta] = useState<VrstaKey | "">("");
   const [pasma, setPasma] = useState("");
 
+   //FIX #6: Dodana stanja za loading in error
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   /*
     ko se stran zažene se tudi ta funkcija zažene,
     pridobi vse oglase iz API,
     ter jih shrane v stanje "Oglasi"
   */
-  useEffect(() => {
+   useEffect(() => {
     const fetchOglasi = async () => {
-      const res = await fetch("/api/oglas");
-      const data = await res.json();
-      setOglasi(data);
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const res = await fetch("/api/oglas");
+        
+        // FIX #6: Preveri status
+        if (!res.ok) {
+          throw new Error("Napaka pri pridobivanju oglasov");
+        }
+        
+        const data = await res.json();
+        setOglasi(data);
+      } catch (err: any) {
+        // FIX #6: Error handling
+        console.error("Fetch error:", err);
+        setError(err.message || "Prišlo je do napake");
+      } finally {
+        setLoading(false);
+      }
     };
+    
     fetchOglasi();
   }, []);
 
@@ -89,25 +111,54 @@ export default function Home() {
 
         {/* OGLASI */}
         <section className="flex-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtriraniOglasi.map((oglas) => (
-              <Link
-                href={`/oglasi/${oglas._id}`}
-                key={oglas._id}
-                className="bg-white rounded-xl shadow p-4 hover:scale-105 transition cursor-pointer"
+          {/*FIX #6: Loading in error stanja */}
+          {loading && (
+            <div className="text-center py-10">
+              <p className="text-xl">Nalagam oglase...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+              <p className="font-bold">Napaka</p>
+              <p>{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
               >
-                {oglas.slika && (
-                  <img
-                    src={oglas.slika}
-                    className="w-full h-48 object-cover rounded mb-2"
-                  />
-                )}
-                <h3 className="font-bold">{oglas.opis}</h3>
-                <p>{oglas.pasma}</p>
-                <p className="text-main font-bold">{oglas.cena} €</p>
-              </Link>
-            ))}
-          </div>
+                Poskusi ponovno
+              </button>
+            </div>
+          )}
+
+          {!loading && !error && filtriraniOglasi.length === 0 && (
+            <div className="text-center py-10">
+              <p className="text-xl">Ni oglasov za prikaz</p>
+            </div>
+          )}
+
+          {!loading && !error && filtriraniOglasi.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filtriraniOglasi.map((oglas) => (
+                <Link
+                  href={`/oglasi/${oglas._id}`}
+                  key={oglas._id}
+                  className="bg-white rounded-xl shadow p-4 hover:scale-105 transition cursor-pointer"
+                >
+                  {oglas.slika && (
+                    <img
+                      src={oglas.slika}
+                      alt={oglas.opis}
+                      className="w-full h-48 object-cover rounded mb-2"
+                    />
+                  )}
+                  <h3 className="font-bold">{oglas.opis}</h3>
+                  <p className="text-gray-600">{oglas.pasma}</p>
+                  <p className="text-main font-bold">{oglas.cena} €</p>
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
       </div>
     </main>
