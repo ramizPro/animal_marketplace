@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link"; 
 
 export default function SignUpPage() {
   const router = useRouter(); //namenjeno za pošiljenje uporabnika na drugo stran, ko se uporabnik prijavi
@@ -34,15 +35,18 @@ export default function SignUpPage() {
         const data = await res.json();
         throw new Error(data.error || "Registration failed");
       }
+      
+      // FIX: Dodana potrditev uspešne registracije
+      alert("Registracija uspešna! Sedaj se lahko prijaviš.");
       router.push("/login");
     } catch (error: any) {
       alert(error.message);
+    } finally {
+      setLoading(false); 
     }
-
-    setLoading(false);
   };
 
-return (
+  return (
     <main
       className="min-h-screen flex justify-center items-center"
       style={{
@@ -62,9 +66,10 @@ return (
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <input
             name="username"
-            type="username"
+            type="text" //FIX #4: Spremenjen iz "username" v "text"
             placeholder="Uporabniško ime"
             required
+            minLength={3} //FIX #4
             className="p-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black"
           />
           <input
@@ -74,22 +79,31 @@ return (
             required
             className="p-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black"
           />
-           <input
+          <input
             name="password"
             type="password"
             placeholder="Geslo"
             required
+            minLength={5} //FIX #4
             className="p-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-second text-white p-3 rounded-lg text-lg font-semibold hover:bg-secondAcc transition"
+            className="w-full bg-second text-white p-3 rounded-lg text-lg font-semibold hover:bg-secondAcc transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Registriranje..." : "Registracija"}
           </button>
         </form>
+
+        {/* Dodan link na prijavo*/}
+        <div className="text-center text-sm">
+          <span className="text-gray-700">Že imaš račun? </span>
+          <Link href="/login" className="text-second font-semibold hover:underline">
+            Prijavi se
+          </Link>
+        </div>
       </div>
     </main>
   );

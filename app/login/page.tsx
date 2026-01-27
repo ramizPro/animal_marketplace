@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -71,6 +72,8 @@ export default function LoginPage() {
             className="p-3 bg-white border-2 border-gray-300 rounded-lg focus:outline-none focus:border-black"
           />
 
+
+
           <button
             type="submit"
             disabled={loading}
@@ -79,6 +82,13 @@ export default function LoginPage() {
             {loading ? "Prijavljanje..." : "Prijava"}
           </button>
         </form>
+          {/* Dodan link na prijavo*/}
+          <div className="text-center text-sm">
+            <span className="text-gray-700">Še nimaš računa? </span>
+            <Link href="/signUp" className="text-second font-semibold hover:underline">
+              Registreraj se
+            </Link>
+          </div>
       </div>
     </main>
   );
