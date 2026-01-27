@@ -1,14 +1,12 @@
 describe('Filtri živali', () => {
   it('preveri vse kombinacije vrste in pasme', () => {
-    cy.visit('http://localhost:3000/')
+    cy.visit('/')
 
-    // prijava
     cy.get('a[href*="login"]').click()
     cy.get('input[name="email"]').type('test1@gmail.com')
     cy.get('input[name="password"]').type('geslo')
     cy.get('button[type*="submit"]').click()
 
-    // ====== TVOJ DEL ======
     cy.get('select').first().then($select => {
       const vrste = [...$select.find('option')].map(o => o.value)
 

@@ -1,27 +1,23 @@
-describe('Dodajanje novega oglasa', () => {
-  it('uporabnik lahko objavi nov oglas', () => {
-    cy.visit('http://localhost:3000/')
+describe('Dodajanje in brisanje oglasa', () => {
+  it('uporabnik lahko objavi nov oglas in ga izbriše', () => {
+    cy.visit('/')
 
-    // ===== PRIJAVA =====
     cy.get('a[href*="login"]').click()
     cy.get('input[name="email"]').type('test1@gmail.com')
     cy.get('input[name="password"]').type('geslo')
     cy.get('button[type*="submit"]').click()
 
-    // ===== KLIK NA OBJAVI =====
     cy.contains('Objavi').click()
 
     cy.url().should('include', '/objavi_oglas')
 
-    // ===== IZPOLNI OBRAZEC =====
+    const opisOglasa = 'Prodam mladega telička, zelo miren - TEST ' + Date.now()
+    
+    cy.get('input[name="opis"]').type(opisOglasa)
 
-    cy.get('input[name="opis"]').type('Prodam mladega telička, zelo miren')
-
-    // izberi vrsto
-    cy.get('select').first().select(1)   // prva prava vrsta (ne placeholder)
+    cy.get('select').first().select(1)
     cy.get('select').first().should('not.have.value', '')
 
-    // izberi pasmo
     cy.get('select').eq(1).should('not.be.disabled')
     cy.get('select').eq(1).select(1)
 
@@ -29,16 +25,27 @@ describe('Dodajanje novega oglasa', () => {
     cy.get('input[name="kontakt"]').type('040123456')
     cy.get('input[name="cena"]').type('250')
 
-    // ===== UPLOAD SLIKE =====
     cy.get('input[type="file"]').selectFile('cypress/fixtures/test-slika.jpg')
 
-    // ===== ODDAJA =====
     cy.get('button[type="submit"]').click()
 
-    // tukaj prilagodi glede na tvoje obnašanje po submitu
     cy.contains('Objavljam...').should('exist')
+    cy.url().should('include', '/mainPage', { timeout: 10000 })
 
-    // primer – po uspehu te vrne na glavno stran
-    cy.url().should('include', '/mainPage')
+    cy.wait(1000)
+    
+    cy.contains(opisOglasa).click()
+    
+    cy.url().should('include', '/oglasi/')
+    
+    cy.contains(opisOglasa).should('exist')
+
+    cy.contains('button', 'Izbriši').click()
+    
+    cy.on('window:confirm', () => true)
+
+    cy.url().should('include', '/mainPage', { timeout: 10000 })
+    
+    cy.contains(opisOglasa).should('not.exist')
   })
 })

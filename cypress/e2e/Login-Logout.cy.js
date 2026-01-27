@@ -17,6 +17,6 @@ describe('Navigation', () => {
 
     cy.get('h1').contains('AgroTrg')
 
-    cy.contains('a', 'Odjava').click()
+    cy.contains('button', 'Odjava').click()
   })
 })
