@@ -59,5 +59,14 @@ export function Odjava(){
           Odjava
         </button>
     )
+  }else{
+    return(
+        <Link
+          href="/login"
+          className="px-4 py-2 bg-second text-white rounded-lg hover:bg-secondAcc transition"
+        >
+          Prijava
+        </Link>
+    )
   }
 }
