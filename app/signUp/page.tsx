@@ -55,6 +55,7 @@ export default function SignUpPage() {
         backgroundPosition: "center",
       }}
     >
+      
       <div className="bg-white/80 p-10 rounded-xl shadow-lg w-80 flex flex-col gap-6 backdrop-blur-sm">
         <h1
           style={{ WebkitTextStroke: "1px black" }}
