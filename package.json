@@ -10,7 +10,8 @@
     
     "test": "jest",
     "test:component": "jest",
-
+    
+    "cypress:open": "cypress open",
     "cypress": "cypress run",
     "e2e": "start-server-and-test dev http://localhost:3000 cypress"
   },
