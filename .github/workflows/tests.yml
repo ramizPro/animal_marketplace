@@ -18,11 +18,5 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build app
-        run: npm run build
-
       - name: Run Cypress E2E
         run: npm run e2e
