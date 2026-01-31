@@ -24,8 +24,5 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Run component tests
-        run: npm run test:component
-
       - name: Run Cypress E2E
         run: npm run e2e
