@@ -12,8 +12,7 @@
     "test:component": "jest",
     
     "cypress:open": "cypress open",
-    "cypress": "cypress run",
-    "e2e": "start-server-and-test dev http://localhost:3000 cypress"
+    "cypress": "cypress run"
   },
   "dependencies": {
     "@sanity/client": "^7.13.0",

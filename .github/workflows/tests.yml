@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
-      - name: Run Cypress E2E
-        run: npm run e2e
+      - name: Run Cypress
+        run: npm run cypress
