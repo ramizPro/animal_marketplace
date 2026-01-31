@@ -8,9 +8,6 @@
     "start": "next start",
     "lint": "eslint",
     
-    "test": "jest",
-    "test:component": "jest",
-    
     "cypress:open": "cypress open",
     "cypress": "cypress run"
   },
