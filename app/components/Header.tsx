@@ -62,7 +62,7 @@ export function Odjava(){
   }else{
     return(
         <Link
-          href="/"
+          href="/login"
           className="px-4 py-2 bg-second text-white rounded-lg hover:bg-secondAcc transition"
         >
           Prijava
