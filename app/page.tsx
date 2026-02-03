@@ -14,7 +14,7 @@ export default function Home() {
         AgroTrg
       </h1>
       <div className="bg-white/80 p-8 rounded-xl shadow-lg flex flex-col gap-4 w-60">
-        <Link href="/">
+        <Link href="/login">
           <button className="login_button">Prijava</button>
         </Link>
 
