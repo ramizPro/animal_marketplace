@@ -64,5 +64,5 @@ jobs:
           path: cypress/videos
           retention-days: 7
 
-        name: Run Cypress Component tests
+      - name: Run Cypress Component tests
         run: npm run test:component
